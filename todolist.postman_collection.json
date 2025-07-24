@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "28f85e9c-a7cc-4f33-9bcb-777455d23ba4",
+		"name": "ToDo List",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3399168"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user3\",\n    \"email\": \"user3@sf.com\",\n    \"password\": \"test123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"test123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create todo List",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc1MzMzNDY4MiwiZXhwIjoxNzUzNDIxMDgyfQ.QEuH_ojInDttwBRnbVhzyuEXb-sAryy-rchpqYCobI3LvJGQs_hgqDbJH0R9yGU4nZV9A_9kA_xztA-xjwK1Hg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"My Project Plan\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add item to list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc1MzM0NTI1MCwiZXhwIjoxNzUzNDMxNjUwfQ.B44r5eqofcZILb5KSJYy8aSPx6bZVGGbpclROl8XGeRAGsaO6KxaXfQGcMSQKi86JJsuhpFkzcr8_E2jzxJQZQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"name\": \"abc\",\n        \"description\": \"abc 3\",\n        \"dueDate\": \"2026-03-01\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list/6881c3b147e6a681576185b9/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list",
+						"6881c3b147e6a681576185b9",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update item in list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc1MzMzODAzNywiZXhwIjoxNzUzNDI0NDM3fQ.H1joqvTqa4Q5xwSYnLqqS5vKZpuGqPMEcqG9P8cUc_61ch1nXwx_EhVCpNQ4mrwq-xTiMm08Jd1YXRYKs8-1Lg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"fb23a87f-8779-440e-9460-8ded76e7a3f2\",\n        \"name\": \"Item-1\",\n        \"description\": \"New Item 1\",\n        \"dueDate\": \"2025-09-15\",\n        \"priority\": \"LOW\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list/6881c3b147e6a681576185b9/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list",
+						"6881c3b147e6a681576185b9",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete item in list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc1MzMzOTI0MSwiZXhwIjoxNzUzNDI1NjQxfQ.FX4Rf9MkmX2G_1lzG5GkzAEouTm5x7slq1RwLc0eUqghPsPy_rCXvrTKCr6bWbq9G7bZcKTnVtZOWDFrVvcfIg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"fb23a87f-8779-440e-9460-8ded76e7a3f2\",\n        \"name\": \"Item-1\",\n        \"description\": \"New Item 1\",\n        \"dueDate\": \"2025-09-15\",\n        \"priority\": \"LOW\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list/6881c3b147e6a681576185b9/items-delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list",
+						"6881c3b147e6a681576185b9",
+						"items-delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtering and Sorting",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc1MzM0NDYxMiwiZXhwIjoxNzUzNDMxMDEyfQ.4e7k1UW_63H2N-JxOnIntfpqQ3Kq2vIudbEOzkYZhBliE_I8dYIzrLCPbfmvMZRwBkqNUSb-B43uq6SEDX4GOA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list/6881c3b147e6a681576185b9/items?sortBy=name&sortDir=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list",
+						"6881c3b147e6a681576185b9",
+						"items"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "IN_PROGRESS",
+							"disabled": true
+						},
+						{
+							"key": "sortBy",
+							"value": "name"
+						},
+						{
+							"key": "sortDir",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Share list with others",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc1MzM0NDYxMiwiZXhwIjoxNzUzNDMxMDEyfQ.4e7k1UW_63H2N-JxOnIntfpqQ3Kq2vIudbEOzkYZhBliE_I8dYIzrLCPbfmvMZRwBkqNUSb-B43uq6SEDX4GOA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user2@sf.com\",\n    \"permission\": \"VIEW_ONLY\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list/6881c3b147e6a681576185b9/share",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list",
+						"6881c3b147e6a681576185b9",
+						"share"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "IN_PROGRESS",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get self todo list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMyIsImlhdCI6MTc1MzM1MTM1NywiZXhwIjoxNzUzNDM3NzU3fQ.H7uYsGruaYc2hCqh3qvKuC_x0QY7U4uAzwxQg6X3_ZOTwbgCQv_zrwUu_Oe6xtBZbjmupPJvXvEQtSJkTuWEZQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8088/api/todo-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"todo-list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
