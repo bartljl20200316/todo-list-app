@@ -9,7 +9,7 @@ Before you begin, ensure you have the following installed on your system:
 
 * **Java (JDK)**: Version 17 or higher.
 * **Apache Maven**: 3.9 or higher. For building the project and managing dependencies.
-* **MongoDB**: NoSQL database for storing user and todo list data.
+* **MongoDB**: Community Latest version. NoSQL database for storing user and todo list data.
 * **Docker**: For running MongoDB instance.
 * **API Client**: A client like **Postman** to interact with the API endpoints.
 
@@ -58,7 +58,7 @@ The json file **todolist.postman_collection.json** is the Postman collection for
 
 ### 1. User Authentication
 
-#### Register a New User
+#### 1.1 Register a New User
 - **Endpoint**: 
 ```http 
 POST /api/auth/signup
@@ -73,7 +73,7 @@ POST /api/auth/signup
 }
 ```
 
-#### User Login
+#### 1.2 User Login
 - **Endpoint**:
 ```http 
 POST /api/auth/login
@@ -95,7 +95,7 @@ POST /api/auth/login
 ```
 
 ### 2. Managing Lists and Items
-#### Create a New List
+#### 2.1 Create a New List
 - **Endpoint**:
 ```http 
 POST /api/todo-list
@@ -118,7 +118,7 @@ POST /api/todo-list
 }
 ```
 
-#### Get owned or collaborated todo lists
+#### 2.2 Get owned or collaborated todo lists
 - **Endpoint**:
 ```http 
 GET /api/todo-list
@@ -142,7 +142,6 @@ GET /api/todo-list
           "status": "IN_PROGRESS",
           "priority": "LOW",
           "tags": null,
-          "completed": false,
           "deleted": true
         }
       ],
@@ -157,7 +156,7 @@ GET /api/todo-list
 }
 ```
 
-#### Add item to List
+#### 2.3 Add item to List
 - **Endpoint**:
 ```http 
 POST /api/todo-list/{listId}/items
@@ -189,7 +188,6 @@ POST /api/todo-list/{listId}/items
       "status": null,
       "priority": "HIGH",
       "tags": null,
-      "completed": false,
       "deleted": false
     }
   ],
@@ -197,7 +195,7 @@ POST /api/todo-list/{listId}/items
 }
 ```
 
-#### Update item in List
+#### 2.4 Update item in List
 - **Endpoint**:
 ```http 
 PUT /api/todo-list/{listId}/items
@@ -230,7 +228,6 @@ PUT /api/todo-list/{listId}/items
       "status": null,
       "priority": "LOW",
       "tags": null,
-      "completed": false,
       "deleted": false
     }
   ],
@@ -238,7 +235,7 @@ PUT /api/todo-list/{listId}/items
 }
 ```
 
-#### Delete items in List
+#### 2.5 Delete items in List
 - **Endpoint**:
 ```http 
 PUT /api/todo-list/{listId}/items-delete
@@ -271,7 +268,6 @@ PUT /api/todo-list/{listId}/items-delete
       "status": "NOT_STARTED",
       "priority": "LOW",
       "tags": null,
-      "completed": false,
       "deleted": true
     }
   ],
@@ -309,7 +305,6 @@ GET http://localhost:8088/api/todo-list/60d.../items?status=NOT_STARTED&sortBy=d
       "status": "NOT_STARTED",
       "priority": "MEDIUM",
       "tags": null,
-      "completed": false,
       "deleted": false
     },
     {
@@ -320,7 +315,6 @@ GET http://localhost:8088/api/todo-list/60d.../items?status=NOT_STARTED&sortBy=d
       "status": "NOT_STARTED",
       "priority": "HIGH",
       "tags": null,
-      "completed": false,
       "deleted": false
     }
   ]
