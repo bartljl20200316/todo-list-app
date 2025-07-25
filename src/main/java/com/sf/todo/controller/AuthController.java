@@ -3,6 +3,7 @@ package com.sf.todo.controller;
 import com.sf.todo.dto.JwtAuthResponse;
 import com.sf.todo.dto.LoginDto;
 import com.sf.todo.dto.SignUpDto;
+import com.sf.todo.dto.SignUpUserDto;
 import com.sf.todo.exception.ValidationException;
 import com.sf.todo.model.Role;
 import com.sf.todo.model.User;
@@ -13,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,12 +47,16 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> authenticateUser(@Valid @RequestBody LoginDto loginDto) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthResponse(token));
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword())
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = tokenProvider.generateToken(authentication);
+            return ResponseEntity.ok(new JwtAuthResponse(token));
+        }catch (AuthenticationException ex) {
+            throw new BadCredentialsException("Invalid username or password");
+        }
     }
 
     @PostMapping("/signup")
@@ -67,8 +74,9 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
         user.setRoles(Collections.singleton(Role.ROLE_USER));
 
-        userRepository.save(user);
+        user = userRepository.save(user);
+        SignUpUserDto userDto = new SignUpUserDto(user.getId(), user.getUsername(), user.getEmail(), user.getRoles());
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        return new ResponseEntity<>(userDto, HttpStatus.CREATED);
     }
 }
