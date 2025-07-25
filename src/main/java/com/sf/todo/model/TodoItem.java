@@ -17,6 +17,19 @@ public class TodoItem {
     private List<String> tags;
     private boolean deleted = false;
 
+    public TodoItem() {
+
+    }
+
+    public TodoItem(String id, String name, String description, LocalDate dueDate, ToDoStatus status, ToDoPriority priority) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.status = status;
+        this.priority = priority;
+    }
+
     public String getId() {
         return id;
     }
