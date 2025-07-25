@@ -3,13 +3,13 @@ package com.sf.todo.repository;
 import com.sf.todo.dto.QueryResultDto;
 import com.sf.todo.model.TodoItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
