@@ -72,6 +72,17 @@ POST /api/auth/signup
     "password": "password123"
 }
 ```
+- **Response Body**:
+```json
+{
+  "id": "68886fedb6ee2...",
+  "username": "testuser",
+  "email": "test@example.com",
+  "roles": [
+    "ROLE_USER"
+  ]
+}
+```
 
 #### 1.2 User Login
 - **Endpoint**:
@@ -335,3 +346,13 @@ POST /api/todo-list/{listId}/share
   "permission": "EDIT"
 }
 ```
+
+## Future Work
+
+* Todo List query paging
+* Todo List cache 
+* Error messages i18n
+* Swagger document
+* Conflict update resolver: operational transformation 
+* Separate userService as a independent module 
+* Expand todo item fields: such as media fields
